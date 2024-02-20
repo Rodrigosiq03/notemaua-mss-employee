@@ -1,0 +1,38 @@
+name: AWS DESTROY
+on:
+  workflow_dispatch:
+jobs:
+  DestroyAWS:
+    environment: 
+      name: ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+        - uses: actions/checkout@v3
+        - name: Setup AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v2
+          with:
+            aws-region: sa-east-1
+            role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+            role-session-name: github-action
+
+        - uses: actions/setup-python@v4
+          with:
+            python-version: '3.9'
+
+        - name: Setting stage and stack name
+          run: |
+            echo "STAGE=${{ github.ref_name }}" 
+            echo "STACK_NAME=CleanMssTsTemplate${{github.ref_name}}"
+        - name: Installing Dependencies to Destroy
+          run: |
+            npm install -g aws-cdk
+            cd iac
+            pip install -r requirements.txt
+
+        - name: Destroying AWS
+          run: |
+            cd iac
+            cdk destroy --force
