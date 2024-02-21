@@ -30,7 +30,7 @@ if (stackName === 'prod') {
 }
 
 const tags = {
-  'project': 'Template',
+  'project': 'NotemauaMssEmployeeAuth',
   'stage': 'test',
   'stack': 'BACK',
   'owner': 'Digao'
