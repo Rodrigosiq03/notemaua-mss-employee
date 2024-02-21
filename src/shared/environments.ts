@@ -1,7 +1,7 @@
 import { STAGE } from './domain/enums/stage_enum'
-import { IUserRepository } from './domain/repositories/user_repository_interface'
-import { UserRepositoryDynamo } from './infra/repositories/user_repository_dynamo'
-import { UserRepositoryMock } from './infra/repositories/user_repository_mock'
+import { IEmployeeRepository } from './domain/repositories/employee_repository_interface'
+import { EmployeeRepositoryDynamo } from './infra/repositories/employee_repository_dynamo'
+import { EmployeeRepositoryMock } from './infra/repositories/employee_repository_mock'
 import { config } from 'dotenv'
 config()
 
@@ -56,13 +56,11 @@ export class Environments {
     }
   }
 
-  static getUserRepo(): IUserRepository {
-    console.log('Environments.getEnvs().stage - [ENVIRONMENTS - { GET USER REPO }] - ', Environments.getEnvs().stage)
-
+  static getEmployeeRepo(): IEmployeeRepository {
     if (Environments.getEnvs().stage === STAGE.TEST) {
-      return new UserRepositoryMock()
-    } else if (Environments.getEnvs().stage === STAGE.DEV || Environments.getEnvs().stage === STAGE.PROD) {
-      return new UserRepositoryDynamo()
+      return new EmployeeRepositoryMock()
+    }  else if (Environments.getEnvs().stage === STAGE.DEV || Environments.getEnvs().stage === STAGE.PROD) {
+      return new EmployeeRepositoryDynamo()
     } else {
       throw new Error('Invalid STAGE')
     }
