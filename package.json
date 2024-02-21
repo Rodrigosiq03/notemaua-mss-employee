@@ -11,7 +11,7 @@
     "build:watch": "tsc -w",
     "lint": "eslint --ext .ts src",
     "lint:fix": "eslint --fix --ext .ts src",
-    "test": "vitest --no-watch"
+    "test": "vitest"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.461.0",
@@ -19,10 +19,15 @@
     "@aws-sdk/util-dynamodb": "^3.461.0",
     "aws-sdk": "^2.1506.0",
     "aws-sdk-js-codemod": "^0.28.2",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
-    "zod": "^3.22.4"
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.9"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/nodemailer": "^6.4.14",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
     "eslint": "^8.45.0",

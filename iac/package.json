@@ -5,7 +5,8 @@
     "iac": "app.ts"
   },
   "scripts": {
-    "start-local": "sam local start-api -t ./cdk.out/dev.template.json --docker-network dynamodb-local --skip-pull-image --debug",
+    "start-local": "sam local start-api -t ./cdk.out/NotemauaMssEmployeeAuth.template.json --docker-network dynamodb-local --skip-pull-image --debug",
+    "sam-build": "sam build -t ./cdk.out/NotemauaMssEmployeeAuth.template.json",
     "build": "tsc",
     "watch": "tsc -w",
     "cdk": "cdk"
