@@ -17,7 +17,7 @@ export async function sendFirstAccessMail(ra: string, newPassword: string) {
     const htmlFirstAccessMail = firstAccessMailHtml(newPassword)
     const email = `${ra}@maua.br`
     const mailOptions = {
-      from: `"Contato Notemaua" <${envs.MAIL_USER}>`,
+      from: 'Contato Notemaua <contato@notemaua.com>',
       to: email,
       subject: 'Primeiro acesso ao Notemaua!',
       html: htmlFirstAccessMail
