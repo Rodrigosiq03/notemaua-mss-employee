@@ -69,9 +69,6 @@ export class DynamoDatasource {
       const response = await this.dynamoTable.send(new GetItemCommand(params))
       console.log('response - [DYNAMO_DATASOURCE] - ', response)
 
-      if (!response.Item) {
-        throw new Error('Item not found')
-      }
       return response
     } catch (error: any) {
       console.error(error)
