@@ -3,7 +3,7 @@ import envs from '../../..'
 import { firstAccessMailHtml, forgotPasswordMailHtml } from './mail_html'
 
 const transporter = createTransport({
-  host: 'smtp-mail.outlook.com',
+  host: 'smtp.mailgun.org',
   port: 587,
   secure: false,
   auth: {
