@@ -1,4 +1,3 @@
-// update_password_usecase.ts
 import { IEmployeeRepository } from '../../shared/domain/repositories/employee_repository_interface'
 import { EntityError } from '../../shared/helpers/errors/domain_errors'
 import { NoItemsFound } from '../../shared/helpers/errors/usecase_errors'
