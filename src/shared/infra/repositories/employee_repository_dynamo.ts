@@ -119,4 +119,21 @@ export class EmployeeRepositoryDynamo implements IEmployeeRepository {
 
     return Promise.resolve(employee)
   }
+  async updatePassword(email: string, oldPassword: string, newPassword: string): Promise<Employee> {
+    const employee = await this.getEmployee(email)
+
+    if (!employee) {
+      throw new NoItemsFound('email')
+    }
+
+    if (employee.password !== oldPassword) {
+      throw new EntityError('oldPassword')
+    }
+
+    employee.setPassword = await hash(newPassword, 6)
+
+    await this.updateEmployee(email, newPassword)
+
+    return Promise.resolve(employee)
+  }
 }

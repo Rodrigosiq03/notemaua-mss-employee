@@ -17,9 +17,7 @@ describe('[EmployeeRepositoryMock]', () => {
     expect(() => repo.getEmployee('')).toThrowError(NoItemsFound)
   })
 
-  it('Should throw InvalidPasswordError when old password does not match', () => {
-    expect(() =>
-      repo.updatePassword('admin2@maua.br', 'Admin2_123$$', 'newPassword2#1'),
-    ).toThrowError(InvalidPasswordError)
+  it('Should throw InvalidPasswordError when old password does not match', async () => {
+    await expect(repo.updatePassword('admin2@maua.br', 'ArrastaoNoRioDeJaneiro123$', 'qualquerCoisa123$')).rejects.toThrowError(new InvalidPasswordError())
   })
 })

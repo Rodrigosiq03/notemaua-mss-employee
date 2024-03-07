@@ -4,7 +4,7 @@ import path from 'path'
 // const stage = process.env.STAGE
 
 // if (stage === 'DEV') config({ path: path.resolve(__dirname, './.env.local') })
-config({ path: path.resolve(__dirname, './.env') })
+config({ path: path.resolve(__dirname, './.env.local') })
 
 const envs = {
   STAGE: process.env.STAGE,

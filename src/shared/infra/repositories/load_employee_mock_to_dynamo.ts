@@ -101,8 +101,8 @@ async function loadMockToRealDynamo() {
   const employee = mock.getEmployee('admin@maua.br')
 
   const newEmp = new Employee({
-    email: 'rodrigo@maua.br',
-    name: 'Rodrigo',
+    email: '23.00335-9@maua.br',
+    name: 'Luca',
     password: '$2a$06$o.y.8Z/lwRR1Wf7OwC/WfOa2OsZ0eED/OGtkmUEhxzEGGEbNHGQEi',
     role: ROLE.EMPLOYEE 
   })
@@ -119,13 +119,13 @@ async function loadMockToRealDynamo() {
 if (require.main === module) {
   (async () => {
     await setupDynamoTable()
-    await loadMockToLocalDynamo()
-    // await loadMockToRealDynamo()
+    // await loadMockToLocalDynamo()
+    await loadMockToRealDynamo()
   })()
 } else {
   (async () => {
     await setupDynamoTable()
-    await loadMockToLocalDynamo()
-    // await loadMockToRealDynamo()
+    // await loadMockToLocalDynamo()
+    await loadMockToRealDynamo()
   })()
 }

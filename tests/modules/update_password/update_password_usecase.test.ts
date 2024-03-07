@@ -9,40 +9,28 @@ describe('Assert Update Password usecase is correct', () => {
     const repo = new EmployeeRepositoryMock()
     const usecase = new UpdatePasswordUsecase(repo)
 
-    const executeFunction = async () =>
-      await usecase.execute('invalidemail.com', 'oldPassword', 'newPassword')
-    expect(executeFunction).toThrowError(EntityError)
+    await expect(usecase.execute('invalid_email', 'Admin2_123$', 'newPassword123#')).rejects.toThrowError(EntityError)
   })
 
   it('Should throw EntityError when oldPassword is invalid', async () => {
     const repo = new EmployeeRepositoryMock()
     const usecase = new UpdatePasswordUsecase(repo)
 
-    const executeFunction = async () =>
-      await usecase.execute('user@example.com', '', 'newPassword')
-    expect(executeFunction).toThrowError(EntityError)
+    await expect(usecase.execute('admin2@maua.br', '', 'newPassword123#')).rejects.toThrowError(EntityError)
   })
 
   it('Should throw EntityError when newPassword is invalid', async () => {
     const repo = new EmployeeRepositoryMock()
     const usecase = new UpdatePasswordUsecase(repo)
 
-    const executeFunction = async () =>
-      await usecase.execute('user@example.com', 'Admin2_123$', '')
-    expect(executeFunction).toThrowError(EntityError)
+    await expect(usecase.execute('admin2@maua.br', 'Admin2_123$', '')).rejects.toThrowError(EntityError)
   })
 
   it('Should throw NoItemsFound when user is not found', async () => {
     const repo = new EmployeeRepositoryMock()
     const usecase = new UpdatePasswordUsecase(repo)
 
-    const executeFunction = async () =>
-      await usecase.execute(
-        'admin@example.com',
-        'Admin2_123$',
-        'newPassword',
-      )
-    expect(executeFunction).toThrowError(NoItemsFound)
+    await expect(usecase.execute('admin@example.com', 'Admin2_123$', 'newPassword123#')).rejects.toThrowError(NoItemsFound)
   })
 
   it('Should update password when all parameters are valid', async () => {
@@ -55,6 +43,6 @@ describe('Assert Update Password usecase is correct', () => {
       'newPassword1$',
     )
 
-    expect(updatedUser.password).toBe('newPassword')
+    expect(updatedUser.password).toBe('newPassword1$')
   })
 })
