@@ -31,7 +31,7 @@ describe('Assert Login usecase is correct at all', () => {
   })
   it('Should not login a user with wrong password', async () => {
     try {
-      await usecase.execute('admin@maua.br', 'senhaerradaaqui')
+      await usecase.execute('admin@maua.br', 'Senhaerradaaqui123#')
     } catch (error) {
       expect(error).toEqual(new Error('Password does not match'))
       expect(error.message).toEqual('Password does not match')

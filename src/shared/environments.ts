@@ -2,8 +2,7 @@ import { STAGE } from './domain/enums/stage_enum'
 import { IEmployeeRepository } from './domain/repositories/employee_repository_interface'
 import { EmployeeRepositoryDynamo } from './infra/repositories/employee_repository_dynamo'
 import { EmployeeRepositoryMock } from './infra/repositories/employee_repository_mock'
-import { config } from 'dotenv'
-config()
+import envs from '../..'
 
 export class Environments {
   stage: STAGE = STAGE.TEST
@@ -17,25 +16,25 @@ export class Environments {
   mssName: string = ''
 
   configureLocal() {
-    console.log('process.env.STAGE - [ENVIRONMENTS - { CONFIGURE LOCAL }] - ', process.env.STAGE)
-    process.env.STAGE = process.env.STAGE || 'TEST'
+    console.log('envs.STAGE - [ENVIRONMENTS - { CONFIGURE LOCAL }] - ', envs.STAGE)
+    envs.STAGE = envs.STAGE || 'TEST'
   }
 
   loadEnvs() {
-    if (!process.env.STAGE) {
+    if (!envs.STAGE) {
       this.configureLocal()
     }
 
     
-    this.stage = process.env.STAGE as STAGE
+    this.stage = envs.STAGE as STAGE
 
-    console.log('process.env.STAGE - [CHEGOU NO LOAD_ENVS] - ', process.env.STAGE)
-    console.log('process.env.DYNAMOTABLENAME - [CHEGOU NO LOAD_ENVS] - ', process.env.DYNAMO_TABLE_NAME)
-    console.log('process.env.ENDPOINT_URL - [CHEGOU NO LOAD_ENVS] - ', process.env.ENDPOINT_URL)
-    console.log('process.env.REGION - [CHEGOU NO LOAD_ENVS] - ', process.env.REGION)
+    console.log('process.env.STAGE - [CHEGOU NO LOAD_ENVS] - ', envs.STAGE)
+    console.log('envs.DYNAMOTABLENAME - [CHEGOU NO LOAD_ENVS] - ', envs.DYNAMO_TABLE_NAME)
+    console.log('envs.ENDPOINT_URL - [CHEGOU NO LOAD_ENVS] - ', envs.ENDPOINT_URL)
+    console.log('envs.REGION - [CHEGOU NO LOAD_ENVS] - ', envs.REGION)
     console.log('this.stage - [CHEGOU NO LOAD_ENVS] - ', this.stage)
     console.log('this.DYNAMOTABLENAME - [CHEGOU NO LOAD_ENVS] - ', this.dynamoTableName)
-    this.mssName = process.env.MSS_NAME as string
+    this.mssName = envs.MSS_NAME as string
 
     if (this.stage === STAGE.TEST) {
       this.s3BucketName = 'bucket-test'
@@ -46,13 +45,13 @@ export class Environments {
       this.dynamoSortKey = 'SK'
       this.cloudFrontGetUserPresenterDistributionDomain = 'https://d3q9q9q9q9q9q9.cloudfront.net'
     } else {
-      this.s3BucketName = process.env.S3_BUCKET_NAME as string
-      this.region = process.env.REGION as string
-      this.endpointUrl = process.env.ENDPOINT_URL as string
-      this.dynamoTableName = process.env.DYNAMO_TABLE_NAME as string
-      this.dynamoPartitionKey = process.env.DYNAMO_PARTITION_KEY as string
-      this.dynamoSortKey = process.env.DYNAMO_SORT_KEY as string
-      this.cloudFrontGetUserPresenterDistributionDomain = process.env.CLOUD_FRONT_DISTRIBUTION_DOMAIN as string
+      this.s3BucketName = envs.S3_BUCKET_NAME as string
+      this.region = envs.REGION as string
+      this.endpointUrl = envs.ENDPOINT_URL as string
+      this.dynamoTableName = envs.DYNAMO_TABLE_NAME as string
+      this.dynamoPartitionKey = envs.DYNAMO_PARTITION_KEY as string
+      this.dynamoSortKey = envs.DYNAMO_SORT_KEY as string
+      this.cloudFrontGetUserPresenterDistributionDomain = envs.CLOUD_FRONT_DISTRIBUTION_DOMAIN as string
     }
   }
 

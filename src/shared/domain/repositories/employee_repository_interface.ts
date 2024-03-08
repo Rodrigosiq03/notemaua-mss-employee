@@ -7,4 +7,5 @@ export interface IEmployeeRepository {
   deleteEmployee(email: string): Promise<Employee>
   forgotPassword(email: string): Promise<Employee>
   confirmForgotPassword(email: string, newPassword: string): Promise<Employee>
+  updatePassword(email: string, oldPassword: string, newPassword: string): Promise<Employee>
 }

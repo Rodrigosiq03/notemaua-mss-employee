@@ -7,7 +7,7 @@ import { Environments } from '../../../shared/environments'
 import { IEmployeeRepository } from '../../domain/repositories/employee_repository_interface'
 import { Employee } from '../../domain/entities/employee'
 import { EmployeeDynamoDTO } from '../dto/employee_dynamo_dto'
-import { hash } from 'bcryptjs'
+import { compare, hash } from 'bcryptjs'
 
 export class EmployeeRepositoryDynamo implements IEmployeeRepository {
 
@@ -111,6 +111,25 @@ export class EmployeeRepositoryDynamo implements IEmployeeRepository {
 
     if (!employee) {
       throw new NoItemsFound('email')
+    }
+
+    employee.setPassword = await hash(newPassword, 6)
+
+    await this.updateEmployee(email, newPassword)
+
+    return Promise.resolve(employee)
+  }
+  async updatePassword(email: string, oldPassword: string, newPassword: string): Promise<Employee> {
+    const employee = await this.getEmployee(email)
+
+    if (!employee) {
+      throw new NoItemsFound('email')
+    }
+
+    const isPasswordCorrect = await compare(oldPassword, employee.password)
+
+    if (!isPasswordCorrect) {
+      throw new EntityError('oldPassword')
     }
 
     employee.setPassword = await hash(newPassword, 6)

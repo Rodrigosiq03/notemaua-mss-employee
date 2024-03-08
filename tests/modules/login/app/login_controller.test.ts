@@ -23,7 +23,7 @@ describe('Assert Login controller is correct at all', () => {
     expect(response?.body['message']).toEqual('Employee logged in successfully')
   })
   it('Should not login a user with wrong password', async () => {
-    const request = new HttpRequest({ email: 'admin@maua.br', password: 'Teste123' }, undefined, undefined)
+    const request = new HttpRequest({ email: 'admin@maua.br', password: 'Teste123#$%' }, undefined, undefined)
 
     const response = await controller.handle(request)
 

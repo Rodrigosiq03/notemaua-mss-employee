@@ -13,6 +13,7 @@ export class LambdaStack extends Construct {
   loginFunction: lambda.Function
   forgotPasswordFunction: lambda.Function
   confirmForgotPasswordFunction: lambda.Function
+  updatePasswordFunction: lambda.Function
 
   createLambdaApiGatewayIntegration(moduleName: string, method: string, mssStudentApiResource: Resource, environmentVariables: Record<string, any>) {
     const modifiedModuleName = moduleName.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
@@ -46,11 +47,13 @@ export class LambdaStack extends Construct {
     this.loginFunction = this.createLambdaApiGatewayIntegration('login_employee', 'POST', apiGatewayResource, environmentVariables)
     this.forgotPasswordFunction = this.createLambdaApiGatewayIntegration('forgot_password_employee', 'POST', apiGatewayResource, environmentVariables)
     this.confirmForgotPasswordFunction = this.createLambdaApiGatewayIntegration('confirm_forgot_password_employee', 'POST', apiGatewayResource, environmentVariables)
+    this.updatePasswordFunction = this.createLambdaApiGatewayIntegration('update_password_employee', 'POST', apiGatewayResource, environmentVariables)
 
     this.functionsThatNeedDynamoPermissions = [
       this.loginFunction, 
       this.forgotPasswordFunction, 
       this.confirmForgotPasswordFunction, 
+      this.updatePasswordFunction
     ]
   }
 }

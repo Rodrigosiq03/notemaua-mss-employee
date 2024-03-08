@@ -5,3 +5,9 @@ export class PasswordDoesNotMatchError extends BaseError {
     super('Password does not match')
   }
 }
+
+export class InvalidPasswordError extends BaseError {
+  constructor() {
+    super('Invalid password')
+  }
+}
