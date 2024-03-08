@@ -23,7 +23,5 @@ jobs:
         run: yarn build
       - name: Test (Vitest)
         run: yarn test --no-watch
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
