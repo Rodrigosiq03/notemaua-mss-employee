@@ -28,7 +28,7 @@ async function setupDynamoTable(): Promise<void> {
   console.log('Setting up DynamoDB table...')
 
   const dynamoClient = new DynamoDBClient({
-    // endpoint: envs.ENDPOINT_URl,
+    endpoint: envs.ENDPOINT_URL,
     region: 'sa-east-1',
   })
   console.log('DynamoDB client created')
@@ -76,10 +76,7 @@ async function loadMockToLocalDynamo() {
   const dynamoRepo = new EmployeeRepositoryDynamo()
   
   console.log('Loading mock to local DynamoDB...')
-  
-  const employee = mock.getEmployee('admin@maua.br')
 
-  const hashPwd = await hash('Teste123$', 6)
 
   const newEmp = new Employee({
     email: 'rodrigo@maua.br',
@@ -119,13 +116,13 @@ async function loadMockToRealDynamo() {
 if (require.main === module) {
   (async () => {
     await setupDynamoTable()
-    // await loadMockToLocalDynamo()
-    await loadMockToRealDynamo()
+    await loadMockToLocalDynamo()
+    // await loadMockToRealDynamo()
   })()
 } else {
   (async () => {
     await setupDynamoTable()
-    // await loadMockToLocalDynamo()
-    await loadMockToRealDynamo()
+    await loadMockToLocalDynamo()
+    // await loadMockToRealDynamo()
   })()
 }

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Environments } from '../../shared/environments'
+import { Environments } from '../../../shared/environments'
 import {
   LambdaHttpRequest,
   LambdaHttpResponse,
-} from '../../shared/helpers/external_interfaces/http_lambda_requests'
+} from '../../../shared/helpers/external_interfaces/http_lambda_requests'
 import { UpdatePasswordController } from './update_password_controller'
 import { UpdatePasswordUsecase } from './update_password_usecase'
 

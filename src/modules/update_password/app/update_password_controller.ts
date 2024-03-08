@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IRequest } from '../../shared/helpers/external_interfaces/external_interface'
+import { IRequest } from '../../../shared/helpers/external_interfaces/external_interface'
 import {
   BadRequest,
-  Forbidden,
   InternalServerError,
   NotFound,
   OK,
-} from '../../shared/helpers/external_interfaces/http_codes'
+  Unauthorized,
+} from '../../../shared/helpers/external_interfaces/http_codes'
 import {
   MissingParameters,
   WrongTypeParameters,
-} from '../../shared/helpers/errors/controller_errors'
-import { EntityError } from '../../shared/helpers/errors/domain_errors'
+} from '../../../shared/helpers/errors/controller_errors'
+import { EntityError } from '../../../shared/helpers/errors/domain_errors'
 import {
   ForbiddenAction,
   NoItemsFound,
-} from '../../shared/helpers/errors/usecase_errors'
+} from '../../../shared/helpers/errors/usecase_errors'
 import { UpdatePasswordUsecase } from './update_password_usecase'
 import { UpdatePasswordViewmodel } from './update_password_viewmodel'
 
@@ -79,7 +79,7 @@ export class UpdatePasswordController {
         return new BadRequest(error.message)
       }
       if (error instanceof ForbiddenAction) {
-        return new Forbidden(error.message as any)
+        return new Unauthorized(error.message)
       }
       if (error instanceof Error) {
         return new InternalServerError(error.message)

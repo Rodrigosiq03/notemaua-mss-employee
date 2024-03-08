@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { IRequest } from '../../../src/shared/helpers/external_interfaces/external_interface'
-import { UpdatePasswordController } from '../../../src/modules/update_password/update_password_controller'
-import { UpdatePasswordUsecase } from '../../../src/modules/update_password/update_password_usecase'
+import { UpdatePasswordController } from '../../../src/modules/update_password/app/update_password_controller'
+import { UpdatePasswordUsecase } from '../../../src/modules/update_password/app/update_password_usecase'
 import { EmployeeRepositoryMock } from '../../../src/shared/infra/repositories/employee_repository_mock'
 import { BadRequest, OK } from '../../../src/shared/helpers/external_interfaces/http_codes'
 

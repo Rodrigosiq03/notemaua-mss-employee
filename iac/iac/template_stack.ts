@@ -46,6 +46,7 @@ export class TemplateStack extends Stack {
     dynamoTable.table.grantReadWriteData(lambdaStack.loginFunction)
     dynamoTable.table.grantReadWriteData(lambdaStack.forgotPasswordFunction)
     dynamoTable.table.grantReadWriteData(lambdaStack.confirmForgotPasswordFunction)
+    dynamoTable.table.grantReadWriteData(lambdaStack.updatePasswordFunction)
 
   }
 }

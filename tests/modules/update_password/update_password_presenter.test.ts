@@ -2,12 +2,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { expect, it, describe } from 'vitest'
-import { handler } from '../../../src/modules/update_password/update_password_presenter'
-import { UpdatePasswordController } from '../../../src/modules/update_password/update_password_controller'
-import { UpdatePasswordUsecase } from '../../../src/modules/update_password/update_password_usecase'
-import { EmployeeRepositoryMock } from '../../../src/shared/infra/repositories/employee_repository_mock'
+import { handler } from '../../../src/modules/update_password/app/update_password_presenter'
 
 describe('Assert Update Password presenter is correct at all', () => {
+  
   it('Assert Update Password presenter is correct when updating password', async () => {
     const event = {
       version: '2.0',

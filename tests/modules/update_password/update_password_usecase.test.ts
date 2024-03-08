@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { UpdatePasswordUsecase } from '../../../src/modules/update_password/update_password_usecase'
+import { UpdatePasswordUsecase } from '../../../src/modules/update_password/app/update_password_usecase'
 import { EntityError } from '../../../src/shared/helpers/errors/domain_errors'
 import { NoItemsFound } from '../../../src/shared/helpers/errors/usecase_errors'
 import { EmployeeRepositoryMock } from '../../../src/shared/infra/repositories/employee_repository_mock'

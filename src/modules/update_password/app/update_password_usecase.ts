@@ -1,7 +1,7 @@
-import { IEmployeeRepository } from '../../shared/domain/repositories/employee_repository_interface'
-import { EntityError } from '../../shared/helpers/errors/domain_errors'
-import { NoItemsFound } from '../../shared/helpers/errors/usecase_errors'
-import { Employee } from '../../shared/domain/entities/employee'
+import { IEmployeeRepository } from '../../../shared/domain/repositories/employee_repository_interface'
+import { EntityError } from '../../../shared/helpers/errors/domain_errors'
+import { NoItemsFound } from '../../../shared/helpers/errors/usecase_errors'
+import { Employee } from '../../../shared/domain/entities/employee'
 
 export class UpdatePasswordUsecase {
   constructor(private repo: IEmployeeRepository) {}

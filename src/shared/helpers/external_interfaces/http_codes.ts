@@ -60,6 +60,12 @@ class Forbidden extends HttpResponse {
   }
 }
 
+class Unauthorized extends HttpResponse {
+  constructor(body: any) {
+    super(HttpStatusCodeEnum.UNAUTHORIZED, body)
+  }
+}
+
 
 export {
   OK,
@@ -70,5 +76,6 @@ export {
   NotFound,
   Conflict,
   RedirectResponse,
-  Forbidden
+  Forbidden,
+  Unauthorized
 }

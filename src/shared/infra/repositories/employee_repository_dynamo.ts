@@ -7,7 +7,7 @@ import { Environments } from '../../../shared/environments'
 import { IEmployeeRepository } from '../../domain/repositories/employee_repository_interface'
 import { Employee } from '../../domain/entities/employee'
 import { EmployeeDynamoDTO } from '../dto/employee_dynamo_dto'
-import { hash } from 'bcryptjs'
+import { compare, hash } from 'bcryptjs'
 
 export class EmployeeRepositoryDynamo implements IEmployeeRepository {
 
@@ -126,7 +126,9 @@ export class EmployeeRepositoryDynamo implements IEmployeeRepository {
       throw new NoItemsFound('email')
     }
 
-    if (employee.password !== oldPassword) {
+    const isPasswordCorrect = await compare(oldPassword, employee.password)
+
+    if (!isPasswordCorrect) {
       throw new EntityError('oldPassword')
     }
 
