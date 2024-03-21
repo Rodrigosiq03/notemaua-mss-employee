@@ -34,7 +34,7 @@ export class LoginController {
 
       const token = jsonwebtoken.sign({ role: employee.role}, jwtSecret, 
         {
-          expiresIn: '24h'
+          expiresIn: '7d'
         })
 
       const viewmodel = new LoginViewmodel(token)
